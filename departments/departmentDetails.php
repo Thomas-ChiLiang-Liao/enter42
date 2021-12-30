@@ -325,7 +325,7 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
             </tr>
             <tr>
               <th class="table-warning text-center align-middle" rowspan="2">公告第二階段<br>甄試名單並寄發<br>複試通知日期</th>
-              <td class="text-center align-middle" colspan="2" rowspan="2"><?php echo dateFormat($result['date2'],0); ?>起</td>
+              <td class="text-center align-middle" colspan="2" rowspan="2"><?php echo ( $result['date2'] == null ? '--' : dateFormat($result['date2'],0).'起' ); ?></td>
               <th class="table-warning text-left align-middle" colspan="8">D-3.其他有利審查資料</th>
               <td class="text-center align-middle">1件</td>
             </tr>
@@ -335,7 +335,7 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
             </tr>
             <tr>
               <th class="table-warning text-center align-middle">甄試日期</th>
-              <td class="text-center align-middle" colspan="2"><?php echo dateFormat($result['examDate'],1); ?></td>
+              <td class="text-center align-middle" colspan="2"><?php echo ( $result['examDate'] == null ? '--' : dateFormat($result['examDate'],1) ); ?></td>
             </tr>
             <tr>
               <th class="table-warning text-center align-middle">公告甄選<br>總成績日期</th>

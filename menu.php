@@ -27,7 +27,14 @@ function menu($func) {
             <a class="nav-link<?php echo ( $func == 'departments' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/departments/">校系資料查詢</a>
           </li>
         </ul>
-      </div>      
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link<?php echo ( $func == 'quota' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/quota/">名額比較</a>
+          </li>
+        </ul>
+
+      </div>        
     </div>
 	</nav>
 <?php } ?>

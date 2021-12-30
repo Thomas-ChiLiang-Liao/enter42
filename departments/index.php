@@ -68,7 +68,7 @@ $statement->execute();
     ?>
     <div class="row mt-1">
       <div class="col-12">
-        <table class="table table-striped table-sm table-bordered table-hover">
+        <table class="table table-sm table-bordered table-hover">
           <thead class="table-primary">
             <tr>
               <th class="text-center align-middle">校系</th>
