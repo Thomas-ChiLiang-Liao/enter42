@@ -16,7 +16,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
   <title>預選系統</title>
-  <link rel="icon" href="images/NA156516864930117.gif" type="image/x-icon">
+  <link rel="icon" href="images/logo.icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <?php menu(''); ?>

@@ -6,13 +6,10 @@ $host = 'localhost:3307';
 // 資料庫名稱
 $databaseName = 'enter42'; 
 
-// 專案根目錄
-$rootPath = "https://$_SERVER[SERVER_NAME]" . $_SERVER['REQUEST_URI'];
-
 /********************************************************************************
 ** 後臺程式操作資料庫時所使用的帳號、密碼                                   
 ** 全域權限：無。                                                             
-** 操作資料庫enter42權限：全域 -> select,                                     
+** 操作資料庫enter42權限：全域 -> select, insert                                     
 ** 		操作資料表control, operator, student, class權限：insert, update, delete 
 **		操作資料表TVERETarget, TVEREOperateRecord, TVEREStatic權限：delete      
 ********************************************************************************/
@@ -40,12 +37,34 @@ $importentMessage = '本系統查詢資料僅供參考，所有資訊以「111�
 
 // 高中職學校名稱
 $vhSchool = '臺北市立大安高工<span style="color: yellow;">日間部</span>';
+// 轉出檔所冠之學校代碼。
 $vhSchoolId = '1251';
 
-// 校內IP群
-$inSchoolIp[] = '210.70.131.*';
-$inSchoolIp[] = '10.0.*.*';
-$inSchoolIp[] = '127.0.0.1';
+// 預選校系上限
+$maxTargets = 6;
 
 ////////////以上資料請依各項環境因素自行修改，以使系統順利執行////////////////
+function mysqlDateTime2PHPTimeInteger($mysqlDateTimeString) {
+  $year = substr($mysqlDateTimeString,0,4);
+  $month = substr($mysqlDateTimeString,5,2);
+  $day = substr($mysqlDateTimeString,8,2);
+  $hour = substr($mysqlDateTimeString,11,2);
+  $minute = substr($mysqlDateTimeString,14,2);
+  $second = substr($mysqlDateTimeString,-2);
+  return mktime((int) $hour, (int) $minute, (int) $second, (int) $month, (int) $day, (int) $year);
+}
+
+function weekDay($value) {
+  if (!isset($value)) return '--';
+  switch ($value) {
+    case 0: $returnString = '一'; break;
+    case 1: $returnString = '二'; break;
+    case 2: $returnString = '三'; break;
+    case 3: $returnString = '四'; break;
+    case 4: $returnString = '五'; break;
+    case 5: $returnString = '六'; break;
+    case 6: $returnString = '日'; break;
+  }
+  return '(' . $returnString . ')';
+}		
 ?>

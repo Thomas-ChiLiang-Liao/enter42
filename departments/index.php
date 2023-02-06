@@ -4,9 +4,14 @@
 session_start();
 include '../menu.php';
 include '../config.ini.php';
+$errorPage = "Location: https://$_SERVER[SERVER_NAME]".dirname($_SERVER['SCRIPT_NAME']).'/../error.php?msg';
 $pdo = new PDO("mysql:host=$host;dbname=$databaseName;charset=utf8",$guestId,$guestPw);
 $statement = $pdo->query('SELECT id, sort FROM TVETExamSort WHERE id <= 21;');
-$statement->execute();
+$errMessage = $pdo->errorInfo();
+if ($errMessage[0] != '00000') {
+  header("$errorPage=danger:讀取 TVETExamSort 發生錯誤！代碼：$errMessage[0]/$errMessage[1]<br>訊息：$errMessage[2]");
+  exit();
+}
 ?>
 
 <html lang="en">
@@ -16,24 +21,9 @@ $statement->execute();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>預選系統</title>
-  <link rel="icon" href="../images/NA156516864930117.gif" type="image/x-icon">
-  <style>
-    tr.link { cursor: pointer; }
-  </style>
-  <!-- 本頁所用之 jQuery / javascript -->
-  <script>
-    $(document).ready(function(){
-      $(".link").click(function(){
-        window.open($(this).data("href"), "_blank");
-      });
-      $("select").change(function(){
-        $(this).parent().submit();
-      });
-    });
-  </script>
-
+  <link rel="icon" href="../images/logo.icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
   <?php menu('departments'); ?>
@@ -41,8 +31,8 @@ $statement->execute();
     <div class="row mt-0">
       <div class="col-12 offset-md-4 col-md-4 text-center">
         <form action="index.php" method="post">
-          <select class="form-select form-select-sm mt-1" name="selector">
-            <option value='00'>請選擇校系類別</option>
+          <select class="form-select form-select-sm mt-1" name="selector" onchange="this.parentNode.submit()">
+            <option value='00'>請選擇招生群(類)別</option>
             <?php while ( $row = $statement->fetch(PDO::FETCH_ASSOC) ) 
             echo "<option".($_POST['selector'] == $row['id'] ? ' selected' : '')." value='$row[id]'>$row[id]$row[sort]</option>"; ?>
           </select>
@@ -54,7 +44,7 @@ $statement->execute();
       $sql = "SELECT "
         . "  TVEREDepartment.id AS depid, "
         . "  CONCAT(TVERESchool.title, TVEREDepartment.title) AS title, "
-        . "  TVERESchool.isRestricted AS isRestricted, "
+        . "  TVERESchool.maxTargets AS maxTargets, "
         . "  TVEREDepartment.quotaA AS quotaA, TVEREDepartment.stage2QuotaA AS stage2QuotaA, "
         . "  TVEREDepartment.examDate AS examDate "
         . "FROM TVEREDepartment "
@@ -64,7 +54,11 @@ $statement->execute();
       $statement = $pdo->prepare($sql);
       $statement->bindParam(':examSort', $_POST['selector'], PDO::PARAM_STR, 2);
       $statement->execute();
-      if ( !$statement ) echo '發生錯誤，代碼：' . $statement->errorCodce();
+      $errMessage = $statement->errorInfo();
+      if ($errMessage[0] != '00000') {
+        header("$errorPage=danger:讀取 TVETExamSort 發生錯誤(行號: 59)！代碼：$errMessage[0]/$errMessage[1]<br>訊息：$errMessage[2]");
+        exit();
+      }
     ?>
     <div class="row mt-1">
       <div class="col-12">
@@ -72,7 +66,7 @@ $statement->execute();
           <thead class="table-primary">
             <tr>
               <th class="text-center align-middle">校系</th>
-              <th class="text-center align-middle">一校一系</th>
+              <th class="text-center align-middle">可報名校系科組數</th>
               <th class="text-center align-middle">一般生名額</th>
               <th class="text-center align-middle">第二階段名額</th>
               <th class="text-center align-middle">甄試日期</th>
@@ -96,22 +90,22 @@ $statement->execute();
               if ($rows++ > 18) { $rows = 0; ?>
             <tr class="table-primary">
               <th class="text-center align-middle">校系</th>
-              <th class="text-center align-middle">一校一系</th>
+              <th class="text-center align-middle">可報名校系科組數</th>
               <th class="text-center align-middle">一般生名額</th>
               <th class="text-center align-middle">第二階段名額</th>
               <th class="text-center align-middle">甄試日期</th>
             </tr>
             <?php } ?>
-            <tr class="link" data-href="departmentDetails.php?depid=<?php echo $record['depid']; ?>">
-              <td class="align-middle">
-                <?php echo "<strong>$record[depid]</strong>$record[title]"; ?>
+            <tr>
+              <td class="align-middle bg-light">
+                <a href="https:departmentDetails.php?depid=<?php echo $record['depid']; ?>" class="text-primary fw-bold text-decoration-none" title="按下可查詢此系條件" target="_blank">
+                  <?php echo "<strong>$record[depid]</strong>$record[title]"; ?>
+                </a>
               </td>
-              <td class="text-center align-middle text-white <?php echo ( $record['isRestricted'] == 1 ? 'bg-danger' : 'bg-success'); ?>">
-                <?php echo ( $record['isRestricted'] == 1 ? '是' : '否' ); ?>
-              </td>
-              <td class="text-center align-middle"><?php echo "$record[quotaA]"; ?></td>
-              <td class="text-center align-middle"><?php echo "$record[stage2QuotaA]"; ?></td>
-              <td class="text-center align-middle"><?php echo ( $record['examDate'] == null ? '--' : date('Y-m-d', $examDate) . ' (' . $weekDay . ')' ); ?></td>
+              <td class="text-center align-middle bg-light"><?php echo $record['maxTargets']; ?></td>
+              <td class="text-center align-middle bg-light"><?php echo "$record[quotaA]"; ?></td>
+              <td class="text-center align-middle bg-light"><?php echo "$record[stage2QuotaA]"; ?></td>
+              <td class="text-center align-middle bg-light"><?php echo ( $record['examDate'] == null ? '--' : date('Y-m-d', $examDate) . ' (' . $weekDay . ')' ); ?></td>
             </tr>
             <? } ?>
           </tbody>
