@@ -35,8 +35,7 @@
       	. ' TVEREDepartment.quotaA AS quotaA,'
     		. ' CONCAT(YEAR(TVEREDepartment.examDate) - 1911, "年", MONTH(TVEREDepartment.examDate), "月", DAYOFMONTH(TVEREDepartment.examDate), "日 ") AS examDate,'
 	  		. ' WEEKDAY(TVEREDepartment.examDate) AS examDateWeekDay,'    	
-      	. ' TVEREStatic.num AS students,'
-      	. ' TVERESchool.isRestricted AS isRestricted'
+      	. ' TVEREStatic.num AS students'
       . ' FROM TVERETarget'
       . ' LEFT JOIN TVEREDepartment ON RIGHT(TVERETarget.id,6) = TVEREDepartment.id'
       . ' LEFT JOIN TVERESchool ON MID(TVERETarget.id,7,3) = TVERESchool.id'
@@ -60,7 +59,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title><?php echo "$student[classTitle]【".substr($_GET['stuid'],-2)."】"; ?>預選列表</title>
-  <link rel="icon" href="../../images/logo.icon.png" type="image/x-icon">
+  <link rel="icon" href="../images/logo.icon.png" type="image/x-icon">
   <link rel="stylesheet" href="../../styles.css">
   <script src="../../autoLogout.js"></script>
 </head>
@@ -79,7 +78,6 @@
                     <th class="text-center">甄試日期</th>
                     <th class="text-center">招生名額</th>
                     <th class="text-center">預選人數</th>
-                    <th class="text-center">一校一系</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -99,7 +97,6 @@
                       <a href="studentsList.php?targetId=<?php echo $field['departmentId']; ?>" class="btn btn-info" title="預選此校系人數，按此可查詢名單" target="_blank"><?php echo $field['students']; ?></a>
                       <?php } ?>
                     </td>            
-                    <td class="text-center align-middle text-white <?php echo ($field['isRestricted'] ? 'bg-danger' : 'bg-success'); ?>"><?php echo ($field['isRestricted'] ? '是' : '否'); ?></td>
                   </tr>
                   <?php } ?>  
                 </tbody>

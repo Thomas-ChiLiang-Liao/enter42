@@ -51,6 +51,19 @@ function menu($func) {
           <li class="nav-item">
             <a class="nav-link<?php echo ( $func == 'dataDownload' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/dataDownload/">預選結果下載</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link<?php echo ( $func == 'simulateInterviewDownload' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/simulateInterviewDownload/">專業問題模擬面試名單(報名結果)</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link<?php echo ( $func == 'phase1Upload' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/phase1Upload/">一階篩選結果上傳</a>
+          </li>          
+
+          <li class="nav-item">
+            <a class="nav-link<?php echo ( $func == 'simulateInterviewDownloadB' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/simulateInterviewDownloadB/">專業問題模擬面試名單(一階通過)</a>
+          </li>          
+
         </ul>
         <span class="navbar-text text-white">
           操作人員：<?php echo $_SESSION['name']; ?>

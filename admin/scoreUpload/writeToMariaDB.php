@@ -56,8 +56,8 @@ else {
     //print_r ($sheetData);
     foreach ($sheetData as $i => $student) {
       if ($i == 1) continue;
-      $score  = "{ \"chinese\": $student[G], \"english\": $student[J], \"math\": $student[M], \"pro1\": $student[P], \"pro2\": ";
-      $scoreG = "{ \"chinese\": $student[H], \"english\": $student[K], \"math\": $student[N], \"pro1\": $student[Q], \"pro2\": ";
+      $score  = "{ \"chinese\": ".floatval($student[G]).", \"english\": ".floatval($student[J]).", \"math\": ".floatval($student[M]).", \"pro1\": ".floatval($student[P]).", \"pro2\": ";
+      $scoreG = "{ \"chinese\": ".intval($student[H]).", \"english\": ".intval($student[K]).", \"math\": ".intval($student[N]).", \"pro1\": ".intval($student[Q]).", \"pro2\": ";
       $examSort = substr($student['E'],0,2);
       switch ($examSort) {
         case '01':
@@ -79,37 +79,37 @@ else {
         case '18':
         case '19':
         case '20':
-          $score  .= "{\"B$examSort\": $student[S] } }";
-          $scoreG .= "{\"B$examSort\": $student[T] } }";
+          $score  .= "{\"B$examSort\": ".floatval($student[S])." } }";
+          $scoreG .= "{\"B$examSort\": ".intval($student[T]." } }";
           break;
         case '09':  
         case '21':
-          $score  .= "{\"B09\": $student[S], \"B21\": $student[S] } }";
-          $scoreG .= "{\"B09\": $student[T], \"B21\": $student[T] } }";
+          $score  .= "{\"B09\": ".floatval($student[S]).", \"B21\": ".floatval($student[S])." } }";
+          $scoreG .= "{\"B09\": ".intval($student[T]).", \"B21\": ".intval($student[T])." } }";
           break;
         case '51':
-          $score  .= "{\"B03\": $student[S], \"B04\": $student[V] } }";
-          $scoreG .= "{\"B03\": $student[T], \"B04\": $student[W] } }";
+          $score  .= "{\"B03\": ".floatval($student[S]).", \"B04\": ".floatval($student[V])." } }";
+          $scoreG .= "{\"B03\": ".intval($student[T]).", \"B04\": ".intval($student[W])." } }";
           break;
         case '52':
-          $score  .= "{\"B12\": $student[S], \"B13\": $student[V] } }";
-          $scoreG .= "{\"B12\": $student[T], \"B13\": $student[W] } }";
+          $score  .= "{\"B12\": ".floatval($student[S]).", \"B13\": ".floatval($student[V])." } }";
+          $scoreG .= "{\"B12\": ".intval($student[T]).", \"B13\": ".intval($student[W])." } }";
           break;
         case '53':
-          $score  .= "{\"B09\": $student[S], \"B15\": $student[V], \"B21\": $student[S] } }";
-          $scoreG .= "{\"B09\": $student[T], \"B15\": $student[W], \"B21\": $student[T] } }";
+          $score  .= "{\"B09\": ".floatval($student[S]).", \"B15\": ".floatval($student[V]).", \"B21\": ".floatval($student[S])." } }";
+          $scoreG .= "{\"B09\": ".intval($student[T]).", \"B15\": ".intval($student[W]).", \"B21\": ".intval($student[T])." } }";
           break;
         case '54':
-          $score  .= "{\"B09\": $student[S], \"B16\": $student[V], \"B21\": $student[S] } }";
-          $scoreG .= "{\"B09\": $student[T], \"B16\": $student[W], \"B21\": $student[T] } }";
+          $score  .= "{\"B09\": ".floatval($student[S]).", \"B16\": ".floatval($student[V]).", \"B21\": ".floatval($student[S])." } }";
+          $scoreG .= "{\"B09\": ".intval($student[T]).", \"B16\": ".intval($student[W]).", \"B21\": ".intval($student[T])." } }";
           break;
         case '55':
-          $score  .= "{\"B15\": $student[S], \"B16\": $student[V] } }";
-          $scoreG .= "{\"B15\": $student[T], \"B16\": $student[W] } }";
+          $score  .= "{\"B15\": ".floatval($student[S]).", \"B16\": ".floatval($student[V])." } }";
+          $scoreG .= "{\"B15\": ".intval($student[T]).", \"B16\": ".intval($student[W])." } }";
           break;
         case '56':
-          $score  .= "{\"B09\": $student[S], \"B15\": $student[V], \"B16\": $student[Y], \"B21\": $student[S] } }";
-          $scoreG .= "{\"B09\": $student[T], \"B15\": $student[W], \"B16\": $student[Z], \"B21\": $student[T] } }";
+          $score  .= "{\"B09\": ".floatval($student[S]).", \"B15\": ".floatval($student[V]).", \"B16\": ".floatval($student[Y]).", \"B21\": ".floatval($student[S])." } }";
+          $scoreG .= "{\"B09\": ".intval($student[T]).", \"B15\":".intval( $student[W)."], \"B16\": ".intval($student[Z]).", \"B21\": ".intval($student[T])." } }";
           break;
       } 
       //echo $score.' G-> '.$scoreG.'<hr>';  

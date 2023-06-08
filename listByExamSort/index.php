@@ -27,7 +27,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <title>預選系統</title>
-  <link rel="icon" href="../images/logo.icon.jpg" type="image/x-icon">
+  <link rel="icon" href="../images/logo.icon.png" type="image/x-icon">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -52,8 +52,7 @@
       . ' TVEREDepartment.quotaA AS quotaA,'
       . ' CONCAT(YEAR(TVEREDepartment.examDate) - 1911, "年", MONTH(TVEREDepartment.examDate), "月", DAYOFMONTH(TVEREDepartment.examDate), "日 ") AS examDate,'
       . ' WEEKDAY(TVEREDepartment.examDate) AS examDateWeekDay,'    		
-      . ' TVEREStatic.num as students,'
-      . ' TVERESchool.isRestricted AS isRestricted'
+      . ' TVEREStatic.num as students'
     . ' FROM TVEREDepartment'
     . ' LEFT JOIN TVERESchool ON TVERESchool.id = LEFT(TVEREDepartment.id, 3)'
     . ' LEFT JOIN TVEREStatic ON TVEREDepartment.id = TVEREStatic.DepartmentID'
@@ -80,7 +79,6 @@
                   <th class="text-center">甄試日期</th>
                   <th class="text-center">招生人數</th>
                   <th class="text-center">預選人數</th>
-                  <th class="text-center">一校一系</th>                  
                 </tr>
               </thead>
               <tbody>
@@ -98,7 +96,6 @@
                       <a href="../listByClass/studentsList.php?targetId=<?php echo $field['depid']; ?>" class="btn btn-info" title="預選此校系人數，按此可查詢名單" target="_blank"><?php echo $field['students']; ?></a>
                     <?php } else echo '無人選'; ?>
                   </td>
-                  <td class="text-center bg-<?php echo ( $field['isRestricted'] == 1 ? 'danger' : 'success'); ?>"><?php echo ($field['isRestricted'] == 1 ? '是' : '否'); ?></td>
                 </tr>
                 <?php } ?>
               </tbody>

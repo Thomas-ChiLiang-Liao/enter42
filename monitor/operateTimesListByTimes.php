@@ -40,7 +40,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <title>預選系統-操作紀錄</title>
-  <link rel="icon" href="../images/logo.icon.jpg" type="image/x-icon">
+  <link rel="icon" href="../images/logo.icon.png" type="image/x-icon">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
