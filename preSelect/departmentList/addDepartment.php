@@ -34,7 +34,7 @@ else {
 		* 同時也會檢查不合邏輯或相關規定，並給使用者訊息。 * 
 		***************************************************/		
 		
-		// 設定已選校系代碼陣列及一校一系代碼陣列
+		// 設定已選校系代碼陣列
 		$sql = 'SELECT'
       	. ' TVEREDepartment.id AS departmentId,'
       	. ' TVERESchool.isRestricted AS isRestricted'
