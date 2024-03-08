@@ -33,11 +33,13 @@ function dateFormat($date, $type) {
 
 function memoContent($content) {
    if (mb_substr($content,0,2,'UTF-8') == '1.') {
+    /*
     $content = str_replace('\r','',$content);
     $rContent = '';
     $list = explode('。', $content);
     for ($i = 0; $i < count($list)-1; $i++) $rContent .= $list[$i] . '。<br>';
-    return $rContent;
+    */
+    return "<pre>$content</pre>";
   } else return $content;
 }
 
@@ -110,8 +112,8 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
         <table class="table table-bordered table-sm">
           <tbody>
             <tr>
-              <th class="table-warning text-center align-middle" rowspan="3">校系科組<br>學程名稱</th>
-              <td class="table-light align-middle" rowspan="3" colspan="2"><?php echo "$result[schTitle]<br>$result[depTitle]"; ?></td>
+              <th class="table-warning text-center align-middle" rowspan="3" style="width: 6.5%">校系科組<br>學程名稱</th>
+              <td class="table-light align-middle" rowspan="3" colspan="2" style="width: 9%"><?php echo "$result[schTitle]<br>$result[depTitle]"; ?></td>
               <th class="table-warning text-center align-middle" colspan="4">第一階段</th>
               <th class="table-warning text-center align-middle" colspan="6">第二階段指定項目甄試</th>
               <th class="table-warning text-center align-middle" colspan="2">可選填報名之系<br>科(組)、學程數</th>
@@ -126,8 +128,8 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
             </tr>
             <tr>
               <th class="table-warning text-center align-middle" rowspan="7">成<br>績<br>處<br>理<br>方<br>式</th>
-              <th class="table-warning text-center align-middle">科目</th>
-              <th class="table-warning text-center align-middle">篩選倍率</th>
+              <th class="table-warning text-center align-middle" style="width: 3.8%">科目</th>
+              <th class="table-warning text-center align-middle" style="width: 4.3%">篩選倍率</th>
               <th class="table-warning text-center align-middle">同級分超額<br>篩選科目</th>
               <th class="table-warning text-center align-middle" colspan="2">統一入學測驗<br>成績加權</th>
               <th class="table-warning text-center align-middle">指定項目</th>
@@ -308,7 +310,7 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
             </tr>
             <tr>
               <th class="table-warning text-left align-middle" colspan="2" rowspan="2">B.課程學習成果</th>
-              <th class="table-warning text-left align-middle" colspan="7">B-1.專題實作、實習科目學習成果(含技能領域)(*須至少上傳1件)在符合上傳件數限下，可上傳專題實作、亦可上傳實習科目學習成果(含技能領域)、也可二者皆上傳</th>
+              <th class="table-warning text-left align-middle" colspan="7">B-1.專題實作、實習科目學習成果(含技能領域)(*須至少上傳1件)在符合上傳件數上限下，可上傳專題實作、亦可上傳實習科目學習成果(含技能領域)、也可二者皆上傳</th>
               <td class="table-light text-center align-middle"><?php echo $result['B1']; ?>件</td>
             </tr>
             <tr>
@@ -344,7 +346,7 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
             </tr>
             <tr>
               <th class="table-warning text-center align-middle" colspan="3" rowspan="3">學習歷程<br>備審資料<br>上傳說明</th>
-              <td class="table-light text-left align-middle" colspan="10" rowspan="3"><pre><?php echo $result['uploadMemo']; ?></pre></td>
+              <td class="table-light text-left align-middle" colspan="10" rowspan="3"><?php echo memoContent($result['uploadMemo']); ?></td>
             </tr>
             <tr>
               <th class="table-warning text-center align-middle">甄試日期</th>
@@ -358,7 +360,7 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
               <th class="table-warning text-center align-middle">甄選總成績<br>複查截止日期</th>
               <td class="table-light text-center align-middle" colspan="2"><?php echo dateFormat($result['date4'],0); ?>止</td>
               <th class="table-warning text-center align-middle" colspan="3" rowspan="4">指定項目甄試說明</th> 
-              <td class="table-light text-left align-middle" colspan="10" rowspan="4"><pre><?php echo $result['assignExamMemo']; ?></pre></td>             
+              <td class="table-light text-left align-middle" colspan="10" rowspan="4"><?php echo memoContent($result['assignExamMemo']); ?></td>             
             </tr>  
             <tr>
               <th class="table-warning text-center align-middle">公告正(備)取生<br>名單日期</th>
@@ -374,7 +376,7 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
             </tr>     
             <tr>
               <th class="table-warning text-center align-middle" colspan="3">備註</th>
-              <td class="table-light text-left align-middle" colspan="14"><pre><?php echo $result['memo']; ?></pre></td>
+              <td class="table-light text-left align-middle" colspan="14"><?php echo memoContent($result['memo']); ?></td>
             </tr>                         
           </tbody>
         </table>
