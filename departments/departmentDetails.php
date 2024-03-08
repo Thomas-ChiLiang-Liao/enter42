@@ -133,11 +133,11 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
               <th class="table-warning text-center align-middle">同級分超額<br>篩選科目</th>
               <th class="table-warning text-center align-middle" colspan="2">統一入學測驗<br>成績加權</th>
               <th class="table-warning text-center align-middle">指定項目</th>
-              <th class="table-warning text-center align-middle">最低得分</th>
-              <th class="table-warning text-center align-middle">滿分</th>
-              <th class="table-warning text-center align-middle">占總成績比例</th>
+              <th class="table-warning text-center align-middle" style="width: 3%">最低<br>得分</th>
+              <th class="table-warning text-center align-middle" style="width: 3%">滿分</th>
+              <th class="table-warning text-center align-middle">占總成績<br>比例</th>
               <th class="table-warning text-center align-middle">證照或<br>得獎加分</th>
-              <th class="table-warning text-center align-middle">順序</th>
+              <th class="table-warning text-center align-middle" style="width: 1.5%">順序</th>
               <th class="table-warning text-center align-middle">項目</th>
             </tr>
             <tr>
