@@ -15,12 +15,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <title>預選系統-管理</title>
-  <link rel="icon" href="../images/logo.icon.png" type="image/x-icon">
+  <link rel="icon" href="../images/<?php echo ( $_SERVER["SERVER_NAME"] == "yy33.us" ? "website-design.png" : "logo.icon.png"); ?>" type="image/x-icon">
   <link rel="stylesheet" href="../styles.css">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
   <script src="../sha1.js"></script>
   <script src="scripts.js"></script>
 </head>
@@ -42,7 +42,7 @@
                   <?php while ($operator = $statement->fetch(PDO::FETCH_ASSOC)) echo "<option data-value='$operator[id]' value='$operator[name]'>"; ?>
                 </datalist>
                 <input type="password" class="form-control mt-2" placeholder="請輸入密碼" name="userPw" id="userPw">
-                <div class="g-recaptcha mt-2" data-sitekey="6LdVj94UAAAAAIVoFG72BRn-xnxIE_bx3uemirm7"></div>
+                <!--<div class="g-recaptcha mt-2" data-sitekey="6LdVj94UAAAAAIVoFG72BRn-xnxIE_bx3uemirm7"></div>-->
                 <button class="btn btn-secondary mt-2" type="button" onclick="getUserId()">登入</button>
               </form>
           </div>        

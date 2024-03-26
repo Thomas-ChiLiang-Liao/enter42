@@ -33,7 +33,7 @@ $guestPw = 'vY1_u(zF-x';
 
 
 // 重要訊息文字
-$importentMessage = '本系統查詢資料僅供參考，所有資訊以「111學年度科技校院四年級及專科學校二年制聯合甄選委員會」所發行之簡章及網站資料為準。';
+$importentMessage = '本系統查詢資料僅供參考，所有資訊以「113學年度科技校院四年級及專科學校二年制聯合甄選委員會」所發行之簡章及網站資料為準。';
 
 // 高中職學校名稱
 $vhSchool = '臺北市立大安高工<span style="color: yellow;">日間部</span>';
@@ -42,6 +42,11 @@ $vhSchoolId = '1251';
 
 // 預選校系上限
 $maxTargets = 6;
+
+// 是否要輔導室功能
+$serverName = $_SERVER['SERVER_NAME'];
+if ( $serverName == 'photo.taivs.tp.edu.tw' || $serverName == 'yy33.us' ) $extraFunction = true;
+else $extraFunction = false;
 
 ////////////以上資料請依各項環境因素自行修改，以使系統順利執行////////////////
 function mysqlDateTime2PHPTimeInteger($mysqlDateTimeString) {
