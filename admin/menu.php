@@ -1,6 +1,7 @@
 <?php
 function menu($func) { 
   GLOBAL $vhSchool;
+  GLOBAL $extraFunction;
 ?>
 
 	<div class="container-fluid">
