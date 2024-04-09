@@ -32,13 +32,20 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
       $classTableQuery = $pdo->prepare("SELECT * FROM class WHERE 1;");
       $classTableQuery->execute();
       $numOfClasses = $classTableQuery->rowCount();
+
       if (isset($_POST['classSelector'])) {
         $sql = 'SELECT RIGHT(student.id,2) AS seatNo,'
             . ' student.name AS studentName,'
             . ' class.title AS classTitle,'
             . ' CONCAT(student.examSort, TVETExamSort.sort) AS examSort,'
             . ' TVETExamSort.admissionIds AS admissionIds,'
-            . ' student.scoreG AS scoreG '
+            . ' student.scoreG AS scoreG, '
+            . ' student.preChinese AS preChinese, '
+            . ' student.preEnglish AS preEnglish, '
+            . ' student.preMath AS preMath, '
+            . ' student.preProf1 AS preProf1, '
+            . ' student.preProf2 AS preProf2, '
+            . ' student.preDeps AS preDeps '
             . ' FROM student'
             . ' LEFT JOIN class ON class.id = :classId'
             . ' LEFT JOIN TVETExamSort ON student.examSort = TVETExamSort.id'
@@ -89,23 +96,38 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
         </form>
         <?php if (isset($_POST['classSelector'])) { ?>
 					<table class="table table-hover table-bordered mt-3 table-sm">
-						<thead>
+            <thead>
 							<tr class="bg-secondary text-white">
-								<th class="text-center align-middle">重設密碼</th>
-								<th class="text-center align-middle">座號</th>
-								<th class="text-center align-middle">姓名</th>
-								<th class="text-center align-middle">考試類別</th>
-								<th class="text-center align-middle">國文<br>(含作文)</th>
-								<th class="text-center align-middle">英文</th>
-								<th class="text-center align-middle">數學</th>
-								<th class="text-center align-middle">專一</th>
-								<th class="text-center align-middle">專二</th>
+								<th class="text-center align-middle bg-secondary text-white">重設密碼</th>
+								<th class="text-center align-middle bg-secondary text-white">座號</th>
+								<th class="text-center align-middle bg-secondary text-white">姓名</th>
+								<th class="text-center align-middle bg-secondary text-white">考試類別</th>
+								<th class="text-center align-middle bg-secondary text-white">國文<br>(含作文)</th>
+								<th class="text-center align-middle bg-secondary text-white">英文</th>
+								<th class="text-center align-middle bg-secondary text-white">數學</th>
+								<th class="text-center align-middle bg-secondary text-white">專一</th>
+								<th class="text-center align-middle bg-secondary text-white">專二</th>
+                <th class="text-center align-middle bg-secondary text-white">落點分析</th>
 							</tr>
 						</thead>
-						<tbody>
-						<?php while ( $field = $students->fetch(PDO::FETCH_ASSOC) ) { ?>
-							<tr class="table-light">
-								<td class="text-center align-middle">
+            <tbody>
+            <?php $lineCounter = 0; while ( $field = $students->fetch(PDO::FETCH_ASSOC) ) {
+              if ( $lineCounter % 3 == 0 && $lineCounter <> 0 ) { ?>
+            	<tr class="bg-secondary text-white">
+								<th class="text-center align-middle bg-secondary text-white">重設密碼</th>
+								<th class="text-center align-middle bg-secondary text-white">座號</th>
+								<th class="text-center align-middle bg-secondary text-white">姓名</th>
+								<th class="text-center align-middle bg-secondary text-white">考試類別</th>
+								<th class="text-center align-middle bg-secondary text-white">國文<br>(含作文)</th>
+								<th class="text-center align-middle bg-secondary text-white">英文</th>
+								<th class="text-center align-middle bg-secondary text-white">數學</th>
+								<th class="text-center align-middle bg-secondary text-white">專一</th>
+								<th class="text-center align-middle bg-secondary text-white">專二</th>
+                <th class="text-center align-middle bg-secondary text-white">落點分析</th>
+							</tr>
+            <?php } ?>
+							<tr>
+								<td class="text-center align-middle" rowspan="2">
 									<form action="resetPassword.php" method="post" onsubmit="return confirm('<?php echo "要將【$field[classTitle]&nbsp;$field[seatNo]號&nbsp;$field[studentName]】同學的密碼回復成原始設定？";?>')">
 										<input type="hidden" name="studentId" value="<?php echo $_POST['classSelector'].'0'.$field['seatNo']; ?>">
 										<input type="hidden" name="classTitle" value="<?php echo $field['classTitle']; ?>">
@@ -114,10 +136,10 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
 										<button class="btn btn-info py-1" type="submit">重設密碼</button>
 									</form>
 								</td>
-								<td class="text-center align-middle"><?php echo $field['seatNo']; ?></td>
-								<td class="text-center align-middle"><?php echo $field['studentName']; ?></td>
-								<td class="text-center align-middle"><?php echo $field['examSort']; ?></td>
-                <!-- 成績，判斷 scoreG 是否為 null，如果是就全部顯示為 0 -->
+								<td class="text-center align-middle" rowspan="2"><?php echo $field['seatNo']; ?></td>
+								<td class="text-center align-middle" rowspan="2"><?php echo $field['studentName']; ?></td>
+								<td class="text-center align-middle" rowspan="2"><?php echo $field['examSort']; ?></td>
+                <!-- 成績，判斷 scoreG 是否為 null，如果是就全部顯示為  -->
                 <?php if ( $field['scoreG'] == null ) { ?>
                 <td class="text-center align-middle">--</td>
                 <td class="text-center align-middle">--</td>
@@ -145,8 +167,16 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
                   ?>
                 </td>
                 <?php } ?>
+                <td class="text-left align-middle bg-success text-white" rowspan="2"><pre><?php echo ( $field['preDeps'] == null ? '--' : $field['preDeps'] ); ?></pre></td>
 							</tr>
-						<?php } ?>
+              <tr>
+                <td class="text-center align-middle text-white bg-success"><?php echo ( $field['preChinese'] == null ? '--' : $field['preChinese'] ); ?></td>
+                <td class="text-center align-middle text-white bg-success"><?php echo ( $field['preEnglish'] == null ? '--' : $field['preEnglish'] ); ?></td>
+                <td class="text-center align-middle text-white bg-success"><?php echo ( $field['preMath']    == null ? '--' : $field['preMath'] ); ?></td>
+                <td class="text-center align-middle text-white bg-success"><?php echo ( $field['preProf1']   == null ? '--' : $field['preProf1'] ); ?></td>
+                <td class="text-center align-middle text-white bg-success"><?php echo ( $field['preProf2']   == null ? '--' : $field['preProf2'] ); ?></td>
+              </tr>
+						<?php $lineCounter++; } ?>
 						</tbody>
 					</table>
 				<?php } ?>

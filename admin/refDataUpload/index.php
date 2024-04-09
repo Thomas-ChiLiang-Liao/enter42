@@ -32,13 +32,13 @@ else {
   <script src="../scripts.js"></script>
 </head>
 <body>
-  <?php menu('scoreUpload'); ?>
+  <?php menu('refDataUpload'); ?>
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 col-sm-10 offset-sm-1 col-lg-6 offset-lg-3 col-xxl-4 offset-xxl-4">
         <div class="card mt-5">
           <div class="card-header bg-primary text-center text-white">
-            <h3>統測(模擬考)成績上傳</h3>
+            <h3>落點分析資料上傳</h3>
           </div>
           <div class="card-body">
             <form action="writeToMariaDB.php" method="post" enctype="multipart/form-data" onsubmit="return beforeSubmit(this.firstElementChild,'xls_xlsx')">

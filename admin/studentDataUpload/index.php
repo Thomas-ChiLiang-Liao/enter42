@@ -34,7 +34,7 @@ else {
   <link rel="icon" href="../../images/<?php echo ( $_SERVER["SERVER_NAME"] == "yy33.us" ? "website-design.png" : "logo.icon.png"); ?>" type="image/x-icon">
   <link rel="stylesheet" href="../../styles.css">
   <script src="../../autoLogout.js"></script>
-  <script src="scripts.js"></script>
+  <script src="../scripts.js"></script>
 </head>
 <body>
   <?php menu('studentDataUpload'); ?>
@@ -50,8 +50,8 @@ else {
             </div>
             <div class="card-body">
               <?php if ($numOfStudents == 0) { ?> 
-                <form action="studentFileUpload.php" method="post" enctype="multipart/form-data">
-                  <input type="file" class="form-control" id="uploadedFile" name="uploadedFile">
+                <form action="studentFileUpload.php" method="post" enctype="multipart/form-data" onsubmit="return beforeSubmit(this.firstElementChild,'xls_xlsx')">
+                  <input type="file" class="form-control" id="uploadedFile" name="uploadedFile" onchange="checkFileExtension(this,'xls_xlsx')" placehold="AAA">
                   <button class="btn btn-info mt-2" type="submit">上傳</button>
                 </form>
               <?php } else { ?>
@@ -73,8 +73,8 @@ else {
             </div>
             <div class="card-body">
               <?php if ($numOfClasses == 0) { ?>
-                <form action="classFileUpload.php" method="post" enctype="multipart/form-data">
-                  <input type="file" class="form-control" id="uploadedFile" name="uploadedFile">
+                <form action="classFileUpload.php" method="post" enctype="multipart/form-data" onsubmit="return beforeSubmit(this.firstElementChild,'xls_xlsx')">
+                  <input type="file" class="form-control" id="uploadedFile" name="uploadedFile" onchange="checkFileExtension(this,'xls_xlsx')">
                   <button class="btn btn-info mt-2" type="submit">上傳</button>
                 </form>
               <?php } else { ?>

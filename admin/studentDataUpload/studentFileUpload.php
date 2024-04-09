@@ -28,11 +28,8 @@ else {
     move_uploaded_file($_FILES['uploadedFile']['tmp_name'], $workDir . '/' . $workFile);
 
     // 以 PhpSpreadsheet 來讀取檔案
-    if ($fileType != 'xls' && $fileType != 'xlsx') {
-      $_SESSION['msg'] = 'danger:上傳檔案格式錯誤！請上傳 xls 或 xlsx 格式之檔案。';
-      header("Location: $_SESSION[projectRoot]/main/");
-    } else if ($fileType == 'xls') $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-           else                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+    if ($fileType == 'xls') $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+    else                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
     $workSheetFile = $reader->load($workFile);
 
     error_reporting(E_ALL ^ E_NOTICE);

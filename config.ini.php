@@ -48,6 +48,12 @@ $serverName = $_SERVER['SERVER_NAME'];
 if ( $serverName == 'photo.taivs.tp.edu.tw' || $serverName == 'yy33.us' ) $extraFunction = true;
 else $extraFunction = false;
 
+// reCAPTCHA 開關
+if ( $serverName == 'photo.taivs.tp.edu.tw' ) $reCAPTCHA = true;
+else $reCAPTCHA = false;
+
+$reCAPTCHA = false;
+
 ////////////以上資料請依各項環境因素自行修改，以使系統順利執行////////////////
 function mysqlDateTime2PHPTimeInteger($mysqlDateTimeString) {
   $year = substr($mysqlDateTimeString,0,4);

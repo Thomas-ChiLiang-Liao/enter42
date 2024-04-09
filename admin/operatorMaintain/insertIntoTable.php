@@ -31,9 +31,10 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
 		$statement->bindParam(':optype', 		$_POST['operatorType'], 		PDO::PARAM_STR, 1);
 		
 		$statement->execute();
+    $errMessage = $statement->errorInfo();
 		
 		if ( $statement->rowCount() == 1 ) 	$_SESSION['msg'] = "success:新增人員【$_POST[operatorName]】成功！";
-		else 																$_SESSION['msg'] = "danger:發生錯誤，代碼：$statement->errorCode()，請與電腦中心聯絡。";
+		else 																$_SESSION['msg'] = "danger:寫入操作人員資料表發生錯誤，代碼：$errMessage[0]/$errMessage[1]<br>訊息：$errMessage[2]";
 	
 		header("Location: $_SESSION[projectRoot]/main");
     } 

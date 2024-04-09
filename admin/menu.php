@@ -25,14 +25,23 @@ function menu($func) {
           <li class="nav-item">
             <a class="nav-link<?php echo ( $func == 'changePassword' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/changePassword/">修改密碼</a>
           </li>
-
           <?php if ($_SESSION['optype'] == 1) { ?>
           <li class="nav-item">
             <a class="nav-link<?php echo ( $func == 'operatorMaintain' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/operatorMaintain/">操作人員設定</a>
           </li>
-
-          <li class="nav-item">
-            <a class="nav-link<?php echo ( $func == 'studentDataUpload' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/studentDataUpload/">學生/班級資料上傳</a>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">資料上傳</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="<?php echo $_SESSION['projectRoot']; ?>/studentDataUpload/">學生/班級資料上傳</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="<?php echo $_SESSION['projectRoot']; ?>/scoreUpload/">統測成績上傳</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="<?php echo $_SESSION['projectRoot']; ?>/refDataUpload/">落點分析上傳</a>
+              </li>
+            </ul>
           </li>
           <?php } ?>
 
@@ -44,9 +53,8 @@ function menu($func) {
           <li class="nav-item">
             <a class="nav-link<?php echo ( $func == 'webPageSetting' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/webPageSetting/">網頁開關設定</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link<?php echo ( $func == 'scoreUpload' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/scoreUpload/">統測成績上傳</a>
-          </li>
+          
+          
           <?php } ?>
 
           <li class="nav-item">

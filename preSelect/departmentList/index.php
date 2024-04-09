@@ -9,6 +9,12 @@ $_SESSION['examSortID'] => 51
 $_SESSION['examSort'] => 電機與電子群 
 $_SESSION['examSols'] => 03,04 
 $_SESSION['examID']  
+$_SESSION['preChinese']
+$_SESSION['preEnglish']
+$_SESSION['preMath']
+$_SESSION['preProf1']
+$_SESSION['preProf2']
+$_SESSION['preDeps']
 $_SESSION['simInterView'] 
 $_SESSION['phone1'] 
 $_SESSION['phone2']

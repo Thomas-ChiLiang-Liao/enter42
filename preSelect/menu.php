@@ -31,16 +31,25 @@ function menu($func) {
               校系預選
             </a>
           </li>
+          <?php if ($extraFunction = true) { ?>
           <li class="nav-item">
             <a class="nav-link<?php echo ( $func == 'interviewSetting' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/interviewSetting/">
               專業問題模擬面試登記<sub><?php echo ( $_SESSION['simInterView'] == 1 ? '參加' : '不參加' ); ?></sub>
             </a>
           </li>
+          <?php } ?>
           <li class="nav-item">
             <a class="nav-link<?php echo ( $func == 'operateRecords' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/operateRecords/">
               紀錄查詢
             </a>
           </li>
+          <?php if ($_SESSION['preDeps'] != null) { ?>
+          <li class="nav-item">
+            <a class="nav-link<?php echo ( $func == 'refData' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/refData/">
+              落點分析
+            </a>
+          </li>
+          <?php } ?>
         </ul>
         <span class="navbar-text text-white">
           操作人員：<?php echo $_SESSION['studentName']; ?>

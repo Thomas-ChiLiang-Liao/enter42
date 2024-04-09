@@ -13,23 +13,18 @@ function getUserId() {
   document.getElementById('loginForm').submit();
 }
 
-/*
-getUserId() jQuery 版
+function checkFileExtension(obj,extString) {
+  let ext = obj.value.split('.').pop();
+  let extArray = extString.split('_');
+  if ( extArray.indexOf( ext ) == -1 ) alert("上傳檔格式應為：" + extArray.toString() + "，請重新選擇。");
+}
 
-$(document).ready(function() {
-  // <input> <datalist> 中將選到的姓名的 id 查出，一併送到伺服器
-  $("button").click(function() {
-    $("#userPw").val(  SHA1( "%" + $("#userPw").val() + "&"  ) );
-    for (i=0; i<$("#operators option").length; i++) {
-      if ($("#operators option").eq(i).val() == $("#userName").val()) {
-        $("#userId").val( $("#operators option").eq(i).attr("data-value") );
-        break;
-      }
-    }
-    // 設定瀏覽器的 Timezone Offset
-    var d = new Date();
-    $("#secondsBrowserTimezoneOffset").val(d.getTimezoneOffset() * (-60));
-    $(this).parent().submit();
-  })
-})
-*/
+function beforeSubmit(obj, extString) {
+  let ext = obj.value.split('.').pop();
+  let extArray = extString.split('_');
+  if (obj.value != null && extArray.indexOf(ext) != -1 ) return true;
+  else {
+    alert("未指定檔案或檔案格式錯誤。")
+    return false;
+  }
+}

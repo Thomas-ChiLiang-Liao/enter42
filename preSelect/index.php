@@ -77,7 +77,9 @@
   <title>預選系統</title>
   <link rel="icon" href="../images/logo.icon.png" type="image/x-icon">
   <link rel="stylesheet" href="../styles.css">
+  <?php if ( $reCAPTCHA ) { ?>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <?php } ?>
   <script src="../sha1.js"></script>
   <script src="scripts.js"></script>
 </head>
@@ -95,7 +97,9 @@
               <input type="hidden" id="browserTimezoneOffset" name="browserTimezoneOffset">
               <input type="text" pattern="[0-9]{8}" class="form-control" placeholder="請輸入准考證號碼" name="examId" id="examId" required title="請輸入八碼數字">
               <input type="password" class="form-control mt-2" placeholder="請輸入密碼" name="pw" id="pw" required>
+              <?php if ($reCAPTCHA) { ?>
               <div class="g-recaptcha mt-2" data-sitekey="6LdVj94UAAAAAIVoFG72BRn-xnxIE_bx3uemirm7"></div>
+              <?php } ?>
               <button class="btn btn-secondary mt-2" type="submit">登入</button>
             </form>
           </div>
