@@ -78,12 +78,13 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
   <div class="container-fluid">
     <?php if ($numOfStudents == 0 || $numOfClasses == 0) { ?> 
     <div class="alert alert-warning text-center mt-5">
-      <?php
-      if ($numOfStudents == 0 && $numOfClasses == 0) $_SESSION['msg'] = 'warning:學生資料及班級資料均未上傳，請先上傳資料！';
-      else if ($numOfStudents == 0 ) $_SESSION['msg'] = 'warning:學生資料未上傳，請先上傳再進行操作。';
-      else $_SESSION['msg'] = 'warning:班級資料未上傳，請先上傳再進行操作。';
-      header("Location: $_SESSION[projectRoot]/main/");
-      ?>
+      <?php if ($numOfStudents == 0 && $numOfClasses == 0) { ?> 
+        <strong>請注意：</strong>學生資料及班級資料均未上傳，請先上傳資料！
+      <?php } else if ($numOfStudents == 0 ) {?>
+        <strong>請注意：</strong>學生資料未上傳，請先上傳再進行操作。
+      <?php } else { ?>
+        <strong>請注意：</strong>班級資料未上傳，請先上傳再進行操作。
+      <?php } ?>
     </div>
     <?php } else { ?>
     <div class="row">
