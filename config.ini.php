@@ -49,8 +49,8 @@ if ( $serverName == 'photo.taivs.tp.edu.tw' || $serverName == 'yy33.us' ) $extra
 else $extraFunction = false;
 
 // reCAPTCHA 開關
-if ( $serverName == 'photo.taivs.tp.edu.tw' ) $reCAPTCHA = true;
-else $reCAPTCHA = false;
+//if ( $serverName == 'photo.taivs.tp.edu.tw' ) $reCAPTCHA = true;
+//else $reCAPTCHA = false;
 
 $reCAPTCHA = false;
 
