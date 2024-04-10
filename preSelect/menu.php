@@ -31,7 +31,7 @@ function menu($func) {
               校系預選
             </a>
           </li>
-          <?php if ($extraFunction = true) { ?>
+          <?php if ($extraFunction == true) { ?>
           <li class="nav-item">
             <a class="nav-link<?php echo ( $func == 'interviewSetting' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/interviewSetting/">
               專業問題模擬面試登記<sub><?php echo ( $_SESSION['simInterView'] == 1 ? '參加' : '不參加' ); ?></sub>
