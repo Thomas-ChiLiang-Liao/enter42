@@ -84,7 +84,7 @@
                 <tr<?php echo ( $field['targets'] ==  0 ? ' class="text-danger"' : ''); ?>>
                   <td class="text-center align-middle"><?php echo $field['seatNo']; ?></td>
                   <td class="text-center align-middle"><?php echo $field['examSort']; ?></td>
-                  <td class="text-center">
+                  <td class="text-center<?php echo ( $field['targets'] == 0 ? ' text-danger' : ''); ?>">
                     <?php if ($field['targets'] != 0) { ?>
                     <a href="targetsListByStudent.php?stuid=<?php echo $field['studentId']; ?>" class="btn btn-info py-0" target="_blank"><?php echo $field['targets']; ?></a>
                     <?php } else echo $field['targets']; ?>

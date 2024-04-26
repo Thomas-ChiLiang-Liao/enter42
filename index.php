@@ -5,8 +5,8 @@
   else {
     session_start();
     $_SESSION['projectRoot'] = "https://$_SERVER[SERVER_NAME]".dirname($_SERVER['SCRIPT_NAME']);  
-    include 'menu.php';
     include 'config.ini.php';
+    include 'menu.php'
 ?>
 <html lang="en">
 <head>
