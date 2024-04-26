@@ -270,16 +270,16 @@ else {
       <div class="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2 col-xxl-6 offset-xxl-3">
         <table class="table px-3 mt-2">
           <thead id="resortPanel" title="按此可重新排序">
-            <tr class="bg-primary text-white">
-              <th class="text-center align-middle">序號</th>
-              <th class="text-center align-middle">班級</th>
-              <th class="text-center align-middle">准考證號</th>
-              <th class="text-center align-middle">國文</th>
-              <th class="text-center align-middle">英文</th>
-              <th class="text-center align-middle">數學</th>
-              <th class="text-center align-middle">專一</th>
-              <th class="text-center align-middle">專二</th>
-              <th class="text-center align-middle">總分</th>
+            <tr>
+              <th class="text-center align-middle bg-primary text-white">班級</th>
+              <th class="text-center align-middle bg-primary text-white">序號</th>
+              <th class="text-center align-middle bg-primary text-white">准考證號</th>
+              <th class="text-center align-middle bg-primary text-white">國文</th>
+              <th class="text-center align-middle bg-primary text-white">英文</th>
+              <th class="text-center align-middle bg-primary text-white">數學</th>
+              <th class="text-center align-middle bg-primary text-white">專一</th>
+              <th class="text-center align-middle bg-primary text-white">專二</th>
+              <th class="text-center align-middle bg-primary text-white">總分</th>
             </tr>
           </thead>
           <tbody id="scoreTable"><script>setTable();</script></tbody>
