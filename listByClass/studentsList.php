@@ -271,8 +271,8 @@ else {
         <table class="table px-3 mt-2">
           <thead id="resortPanel" title="按此可重新排序">
             <tr>
-              <th class="text-center align-middle bg-primary text-white">班級</th>
               <th class="text-center align-middle bg-primary text-white">序號</th>
+              <th class="text-center align-middle bg-primary text-white">班級</th>
               <th class="text-center align-middle bg-primary text-white">准考證號</th>
               <th class="text-center align-middle bg-primary text-white">國文</th>
               <th class="text-center align-middle bg-primary text-white">英文</th>
