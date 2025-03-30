@@ -105,10 +105,10 @@ function setTable() {
     td_no.innerHTML = i+1;
     row.appendChild(td_no);
 
-    let td_class = document.createElement('td');
-    td_class.className += 'text-center align-middle';
-    td_class.innerHTML = studentArray[i].classTitle;
-    row.appendChild(td_class);
+    // let td_class = document.createElement('td');
+    // td_class.className += 'text-center align-middle';
+    // td_class.innerHTML = studentArray[i].classTitle;
+    // row.appendChild(td_class);
 
     // let td_seatNo = document.createElement('td');
     // td_seatNo.className += 'text-center align-middle';

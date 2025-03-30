@@ -53,7 +53,7 @@ else {
 			$student['O'] = ( strlen($student['O']) == 8 ? '02' : ( strlen($student['O']) == 9 ? '0' : '' ) ) . $student['O'];
       $student['Z'] = '%' . $student['Z'] . '&';
 			
-			$statement->bindParam(':id', 				$student['A'], PDO::PARAM_STR, 	6);
+			$statement->bindParam(':id', 				$student['A'], PDO::PARAM_STR, 11);
 			$statement->bindParam(':name',			$student['H'], PDO::PARAM_STR, 10);
 			$statement->bindParam(':password',	$student['Z'], PDO::PARAM_STR, 12);
 			$statement->bindParam(':examArea',	$student['D'], PDO::PARAM_STR,  2);	

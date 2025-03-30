@@ -21,7 +21,7 @@ if ( isset($_POST['schName']) ) {
     . "LEFT JOIN TVERESchool ON TVEREDepartment.schid = TVERESchool.id "
     . "LEFT JOIN TVETExamSort ON TVEREDepartment.examSort = TVETExamSort.id "
     . "WHERE TVERESchool.title = :schName AND TVEREDepartment.quotaA <> 0 " . ( $_POST['examSort'] <> '00' ? "AND TVETExamSort.id = :examSort " : ' ' )
-    . "ORDER BY TVEREDepartment.title, TVETExamSort.id;";
+    . "ORDER BY TVETExamSort.id, TVEREDepartment.id;";
   $statementLeft = $pdo->prepare($sql);
   $statementLeft->bindParam(':schName', $_POST['schName'], PDO::PARAM_STR, 25);
   if ( $_POST['examSort'] <> '00' ) $statementLeft->bindParam(':examSort', $examSort, PDO::PARAM_STR, 2);
@@ -40,7 +40,7 @@ if ( isset($_POST['schName']) ) {
     . "FROM UnionQuota "
     . "LEFT JOIN TVETExamSort ON LEFT(UnionQuota.id, 2) = TVETExamSort.id "
     . "WHERE UnionQuota.schName = :schName " . ( $_POST['examSort'] <> '00' ? "AND TVETExamSort.id = :examSort " : ' ' )
-    . "ORDER BY UnionQuota.depTitle, TVETExamSort.id;";
+    . "ORDER BY TVETExamSort.id, UnionQuota.id;";
   $statementRight = $pdo->prepare($sql);
   $statementRight->bindParam(':schName', $_POST['schName'], PDO::PARAM_STR, 25);
   if ( $_POST['examSort'] <> '00' ) $statementRight->bindParam(':examSort', $examSort, PDO::PARAM_STR, 2);

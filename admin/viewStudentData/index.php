@@ -39,16 +39,12 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
             . ' class.title AS classTitle,'
             . ' CONCAT(student.examSort, TVETExamSort.sort) AS examSort,'
             . ' TVETExamSort.admissionIds AS admissionIds,'
-            . ' student.scoreG AS scoreG, '
-            . ' student.preChinese AS preChinese, '
-            . ' student.preEnglish AS preEnglish, '
-            . ' student.preMath AS preMath, '
-            . ' student.preProf1 AS preProf1, '
-            . ' student.preProf2 AS preProf2, '
-            . ' student.preDeps AS preDeps '
+            . ' possibilityDepartments.id AS flag, '
+            . ' student.scoreG AS scoreG '
             . ' FROM student'
             . ' LEFT JOIN class ON class.id = :classId'
             . ' LEFT JOIN TVETExamSort ON student.examSort = TVETExamSort.id'
+            . ' LEFT JOIN possibilityDepartments ON student.id = possibilityDepartments.id'
             . ' WHERE LEFT(student.id, 3) = :classId'
             . ' ORDER BY student.id;';
         $students = $pdo->prepare($sql);
@@ -108,12 +104,14 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
 								<th class="text-center align-middle bg-secondary text-white">數學</th>
 								<th class="text-center align-middle bg-secondary text-white">專一</th>
 								<th class="text-center align-middle bg-secondary text-white">專二</th>
-                <th class="text-center align-middle bg-secondary text-white">落點分析</th>
+                <th class="text-center align-middle bg-secondary text-white">檢視落點分析</th>
 							</tr>
 						</thead>
             <tbody>
             <?php $lineCounter = 0; while ( $field = $students->fetch(PDO::FETCH_ASSOC) ) {
-              if ( $lineCounter % 3 == 0 && $lineCounter <> 0 ) { ?>
+              if ( $lastSeatNo == $field['seatNo'] ) continue;
+              if ( $field['flag'] == null ) $disable = true; else $disable = false;
+              if ( $lineCounter % 15 == 0 && $lineCounter <> 0 ) { ?>
             	<tr class="bg-secondary text-white">
 								<th class="text-center align-middle bg-secondary text-white">重設密碼</th>
 								<th class="text-center align-middle bg-secondary text-white">座號</th>
@@ -124,11 +122,11 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
 								<th class="text-center align-middle bg-secondary text-white">數學</th>
 								<th class="text-center align-middle bg-secondary text-white">專一</th>
 								<th class="text-center align-middle bg-secondary text-white">專二</th>
-                <th class="text-center align-middle bg-secondary text-white">落點分析</th>
+                <th class="text-center align-middle bg-secondary text-white">檢視落點分析</th>
 							</tr>
             <?php } ?>
 							<tr>
-								<td class="text-center align-middle" rowspan="2">
+								<td class="text-center align-middle">
 									<form action="resetPassword.php" method="post" onsubmit="return confirm('<?php echo "要將【$field[classTitle]&nbsp;$field[seatNo]號&nbsp;$field[studentName]】同學的密碼回復成原始設定？";?>')">
 										<input type="hidden" name="studentId" value="<?php echo $_POST['classSelector'].'0'.$field['seatNo']; ?>">
 										<input type="hidden" name="classTitle" value="<?php echo $field['classTitle']; ?>">
@@ -137,9 +135,9 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
 										<button class="btn btn-info py-1" type="submit">重設密碼</button>
 									</form>
 								</td>
-								<td class="text-center align-middle" rowspan="2"><?php echo $field['seatNo']; ?></td>
-								<td class="text-center align-middle" rowspan="2"><?php echo $field['studentName']; ?></td>
-								<td class="text-center align-middle" rowspan="2"><?php echo $field['examSort']; ?></td>
+								<td class="text-center align-middle"><?php echo $field['seatNo']; ?></td>
+								<td class="text-center align-middle"><?php echo $field['studentName']; ?></td>
+								<td class="text-center align-middle"><?php echo $field['examSort']; ?></td>
                 <!-- 成績，判斷 scoreG 是否為 null，如果是就全部顯示為  -->
                 <?php if ( $field['scoreG'] == null ) { ?>
                 <td class="text-center align-middle">--</td>
@@ -167,16 +165,17 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
                     }
                   ?>
                 </td>
-                <?php } ?>
-                <td class="text-left align-middle bg-success text-white" rowspan="2"><pre><?php echo ( $field['preDeps'] == null ? '--' : $field['preDeps'] ); ?></pre></td>
+                <td class="text-center align-middle">
+									<form action="possibilityDepartments.php" method="post" target="_blank">
+										<input type="hidden" name="studentId" value="<?php echo $_POST['classSelector'].'0'.$field['seatNo']; ?>">
+										<input type="hidden" name="classTitle" value="<?php echo $field['classTitle']; ?>">
+										<input type="hidden" name="seatNo" value="<?php echo $field['seatNo']; ?>">
+										<input type="hidden" name="studentName" value="<?php echo $field['studentName']; ?>">
+										<button class="btn btn-success py-1" type="submit" <?php echo ( $disable ? "disabled" : ""  ) ?>>落點分析</button>
+									</form>
+								</td>
+                <?php $lastSeatNo = $field['seatNo']; } ?>
 							</tr>
-              <tr>
-                <td class="text-center align-middle text-white bg-success"><?php echo ( $field['preChinese'] == null ? '--' : $field['preChinese'] ); ?></td>
-                <td class="text-center align-middle text-white bg-success"><?php echo ( $field['preEnglish'] == null ? '--' : $field['preEnglish'] ); ?></td>
-                <td class="text-center align-middle text-white bg-success"><?php echo ( $field['preMath']    == null ? '--' : $field['preMath'] ); ?></td>
-                <td class="text-center align-middle text-white bg-success"><?php echo ( $field['preProf1']   == null ? '--' : $field['preProf1'] ); ?></td>
-                <td class="text-center align-middle text-white bg-success"><?php echo ( $field['preProf2']   == null ? '--' : $field['preProf2'] ); ?></td>
-              </tr>
 						<?php $lineCounter++; } ?>
 						</tbody>
 					</table>

@@ -106,8 +106,8 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
     <div class="row mt-2">
       <div class="col-12">
         <div class="alert alert-danger display-6 text-center align-middle">
-          <strong>警告！</strong>下表資料可能有誤，請以紙本簡章或<a href="https://www.jctv.ntut.edu.tw/downloads/113/apply/ugcdrom/index.html" target="_blank">官網</a>資料為主。
-          <a href="https://www.jctv.ntut.edu.tw/downloads/113/apply/ugcdrom/printDept.html?dCode=<?php echo $_GET['depid']; ?>" class="btn btn-secondary btn-lg">官網簡章列印</a>
+          <strong>警告！</strong>下表資料可能有誤，請以紙本簡章或<a href="https://www.jctv.ntut.edu.tw/downloads/114/apply/ugcdrom/index.html" target="_blank">官網</a>資料為主。
+          <a href="https://www.jctv.ntut.edu.tw/downloads/114/apply/ugcdrom/printDept.html?dCode=<?php echo $_GET['depid']; ?>" class="btn btn-secondary btn-lg">官網簡章列印</a>
         </div>
         <table class="table table-bordered table-sm">
           <tbody>

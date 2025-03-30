@@ -35,8 +35,8 @@ function menu($func) {
           
           <li class="nav-item">
             <a class="nav-link<?php echo ( $func == 'listByExamSort' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/listByExamSort/">類別預選統計</a>
-          </li>          
-        
+          </li>  
+          
         </ul>
         <span class="navbar-text text-white">
           <a href="<?php echo $_SESSION['projectRoot']; ?>/preSelect/" class="nav-link d-inline">預選登入</a>

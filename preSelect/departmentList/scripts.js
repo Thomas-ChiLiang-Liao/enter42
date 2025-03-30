@@ -109,27 +109,27 @@ function setTable() {
     td_no.className += 'text-center align-middle';
     td_no.innerHTML = i+1
     row.appendChild(td_no);
+    
+    // let td_class = document.createElement('td');
+    // td_class.className += 'text-center align-middle';
+    // td_class.innerHTML = studentArray[i].classTitle;
+    // row.appendChild(td_class);
 
-    let td_class = document.createElement('td');
-    td_class.className += 'text-center align-middle';
-    td_class.innerHTML = studentArray[i].classTitle;
-    row.appendChild(td_class);
-
-    let td_seatNo = document.createElement('td');
-    td_seatNo.className += 'text-center align-middle';
-    td_seatNo.innerHTML = studentArray[i].seatNo;
-    row.appendChild(td_seatNo); 
+    // let td_seatNo = document.createElement('td');
+    // td_seatNo.className += 'text-center align-middle';
+    // td_seatNo.innerHTML = studentArray[i].seatNo;
+    // row.appendChild(td_seatNo); 
     
     let td_examId = document.createElement('td');
     td_examId.className += 'text-center align-middle';
     td_examId.innerHTML = studentArray[i].examId;
     row.appendChild(td_examId);            
-
-    let td_name = document.createElement('td');
-    td_name.className += 'text-center align-middle';
-    td_name.innerHTML = studentArray[i].stuName;
-    row.appendChild(td_name);
-
+    
+    // let td_name = document.createElement('td');
+    // td_name.className += 'text-center align-middle';
+    // td_name.innerHTML = studentArray[i].stuName;
+    // row.appendChild(td_name);
+    
     let td_chinese = document.createElement('td');
     td_chinese.className += 'text-center align-middle';
     td_chinese.innerHTML = studentArray[i].chinese;

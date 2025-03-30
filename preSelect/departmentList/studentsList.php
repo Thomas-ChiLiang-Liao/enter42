@@ -50,9 +50,9 @@ else {
 
     // 取得選擇該校系的學生資料
     $sql = "SELECT "
-        ."  class.title AS classTitle, "
-        ."  RIGHT(student.id,2) AS seatNo, "
-        ."  student.name AS stuName, "
+        //."  class.title AS classTitle, "
+        //."  RIGHT(student.id,2) AS seatNo, "
+        //."  student.name AS stuName, "
         ."  student.examId AS examId, "
         ."  JSON_EXTRACT(student.scoreG, '$.chinese') AS chinese, "
         ."  JSON_EXTRACT(student.scoreG, '$.english') AS english, "        
@@ -61,7 +61,7 @@ else {
         ."  JSON_EXTRACT(student.scoreG, '$.pro2.B". ( $targetFields['examSort'] == '21' ? '09' : $targetFields['examSort'] )."') AS pro2, "
         ."  (JSON_EXTRACT(student.scoreG, '$.chinese') + JSON_EXTRACT(student.scoreG, '$.english') + JSON_EXTRACT(student.scoreG, '$.math') + JSON_EXTRACT(student.scoreG, '$.pro1') + JSON_EXTRACT(student.scoreG, '$.pro2.B".( $targetFields['examSort'] == '21' ? '09' : $targetFields['examSort'])."')) AS total "
         ."FROM student "
-        ."LEFT JOIN class ON class.id = LEFT(student.id,3) "
+        //."LEFT JOIN class ON class.id = LEFT(student.id,3) "
         ."LEFT JOIN TVERETarget ON student.id = LEFT(TVERETarget.id,6) "
         ."WHERE RIGHT(TVERETarget.id,6) = :depid "
         ."ORDER BY total DESC;";
@@ -292,10 +292,10 @@ else {
           <thead id="resortPanel" title="按此可重新排序">
             <tr class="bg-primary text-white">
               <th class="text-center align-middle">序號</th>
-              <th class="text-center align-middle">班級</th>
-              <th class="text-center align-middle">座號</th>
+              <!--<th class="text-center align-middle">班級</th>-->
+              <!--<th class="text-center align-middle">座號</th>-->
               <th class="text-center align-middle">准考證號</th>
-              <th class="text-center align-middle">姓名</th>
+              <!--<th class="text-center align-middle">姓名</th>-->
               <th class="text-center align-middle">國文</th>
               <th class="text-center align-middle">英文</th>
               <th class="text-center align-middle">數學</th>

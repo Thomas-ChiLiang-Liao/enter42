@@ -58,26 +58,30 @@ else {
     
 		// 逐行讀取資料 
     $numOfRows = 0;
-		$statement = $pdo->prepare("UPDATE student SET preChinese = :preChinese, preEnglish = :preEnglish, preMath = :preMath, preProf1 = :preProf1, preProf2 = :preProf2, preDeps = :preDeps WHERE id = :id;");
+    $statement = $pdo->prepare( 
+      "INSERT INTO possibilityDepartments (id, examSort, chinese, english, math, prof1, prof2, departments) ".
+      "VALUES ( right(:id,6), :examSort, :chinese, :english, :math, :prof1, :prof2, :departments);" 
+    );
     // 讀取活頁簿檔案中的作用工作表
     $sheetData = $workSheetFile->getActiveSheet()->toArray(null,true,true,true);
     //print_r ($sheetData);
+    
     foreach ($sheetData as $i => $student) {
       if ($i == 1 or $i == 2) continue;
-      $statement->bindParam(':preChinese', $student['E'], PDO::PARAM_STR, 16);
-      $statement->bindParam(':preEnglish', $student['F'], PDO::PARAM_STR, 16);
-      $statement->bindParam(':preMath',    $student['G'], PDO::PARAM_STR, 16);
-      $statement->bindParam(':preProf1',   $student['H'], PDO::PARAM_STR, 16);
-      $statement->bindParam(':preProf2',   $student['I'], PDO::PARAM_STR, 16);
-      $statement->bindParam(':preDeps',    $student['J'], PDO::PARAM_STR, 512);
-      $id = substr($student['B'], -6);
-      $statement->bindParam(':id', $id, PDO::PARAM_STR, 6);
+      $statement->bindParam(':id',          $student['B'], PDO::PARAM_STR,  11);
+      $statement->bindParam(':examSort',    $student['C'], PDO::PARAM_STR,   2);
+      $statement->bindParam(':chinese',     $student['E'], PDO::PARAM_STR,  16);
+      $statement->bindParam(':english',     $student['F'], PDO::PARAM_STR,  16);
+      $statement->bindParam(':math',        $student['G'], PDO::PARAM_STR,  16);
+      $statement->bindParam(':prof1',       $student['H'], PDO::PARAM_STR,  16);
+      $statement->bindParam(':prof2',       $student['I'], PDO::PARAM_STR,  16);
+      $statement->bindParam(':departments', $student['J'], PDO::PARAM_STR, 512);
       $statement->execute();
       $errorInfo = $statement->errorInfo();
       if ($errorInfo[0] != '00000') { $_SESSION['msg'] = "danger: 寫入資料庫發生錯誤，代碼：$errorInfo[0].<br>.訊息代碼：$errorInfo[1]，訊息：$errorInfo[2]。"; header("Location: $_SESSION[projectRoot]/main/"); }
       $numOfRows++;
     }
-
+    
     // 刪除上傳檔案
     unlink ($workFile);
 
