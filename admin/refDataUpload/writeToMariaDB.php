@@ -59,7 +59,7 @@ else {
 		// 逐行讀取資料 
     $numOfRows = 0;
     $statement = $pdo->prepare( 
-      "INSERT INTO possibilityDepartments (id, examSort, chinese, english, math, prof1, prof2, departments) ".
+      "INSERT INTO possibileDepartments (id, examSort, chinese, english, math, prof1, prof2, departments) ".
       "VALUES ( right(:id,6), :examSort, :chinese, :english, :math, :prof1, :prof2, :departments);" 
     );
     // 讀取活頁簿檔案中的作用工作表

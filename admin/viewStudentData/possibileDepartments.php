@@ -9,12 +9,17 @@ else {
     include '../../config.ini.php';
 
     $pdo = new PDO("mysql:host=$host;dbname=$databaseName;charset=utf8", $stuId, $stuPw);
-    $statement = $pdo->prepare( "SELECT *, CONCAT(possibilityDepartments.examSort, TVETExamSort.sort) AS examSortTitle FROM possibilityDepartments LEFT JOIN TVETExamSort ON possibilityDepartments.ExamSort = TVETExamSort.id WHERE possibilityDepartments.id = :id;" );
+    $sql = "SELECT *, ".
+           "CONCAT(possibileDepartments.examSort, TVETExamSort.sort) AS examSortTitle ".
+           "FROM possibileDepartments ".
+           "LEFT JOIN TVETExamSort ON possibileDepartments.ExamSort = TVETExamSort.id ".
+           "WHERE possibileDepartments.id = :id;";
+    $statement = $pdo->prepare( $sql );
 
     $statement->bindParam(':id', $_POST['studentId'], PDO::PARAM_STR, 6);
     $statement->execute();
     $errorInfo = $statement->errorInfo();
-    if ($errorInfo[0] != '00000') { $_SESSION['msg'] = "danger: 讀取 possibilityDepartment 資料表時發生錯誤，代碼：$errorInfo[0].<br>.訊息代碼：$errorInfo[1]，訊息：$errorInfo[2]。"; header("Location: $_SESSION[projectRoot]/main/"); }
+    if ($errorInfo[0] != '00000') { $_SESSION['msg'] = "danger: 讀取 possibileDepartment 資料表時發生錯誤，代碼：$errorInfo[0].<br>.訊息代碼：$errorInfo[1]，訊息：$errorInfo[2]。"; header("Location: $_SESSION[projectRoot]/main/"); }
 ?>
 <html lang="en">
 <head>

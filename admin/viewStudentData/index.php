@@ -39,12 +39,12 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
             . ' class.title AS classTitle,'
             . ' CONCAT(student.examSort, TVETExamSort.sort) AS examSort,'
             . ' TVETExamSort.admissionIds AS admissionIds,'
-            . ' possibilityDepartments.id AS flag, '
+            . ' possibileDepartments.id AS flag, '
             . ' student.scoreG AS scoreG '
             . ' FROM student'
             . ' LEFT JOIN class ON class.id = :classId'
             . ' LEFT JOIN TVETExamSort ON student.examSort = TVETExamSort.id'
-            . ' LEFT JOIN possibilityDepartments ON student.id = possibilityDepartments.id'
+            . ' LEFT JOIN possibileDepartments ON student.id = possibileDepartments.id'
             . ' WHERE LEFT(student.id, 3) = :classId'
             . ' ORDER BY student.id;';
         $students = $pdo->prepare($sql);
@@ -165,8 +165,9 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
                     }
                   ?>
                 </td>
+                <?php } ?>
                 <td class="text-center align-middle">
-									<form action="possibilityDepartments.php" method="post" target="_blank">
+									<form action="possibileDepartments.php" method="post" target="_blank">
 										<input type="hidden" name="studentId" value="<?php echo $_POST['classSelector'].'0'.$field['seatNo']; ?>">
 										<input type="hidden" name="classTitle" value="<?php echo $field['classTitle']; ?>">
 										<input type="hidden" name="seatNo" value="<?php echo $field['seatNo']; ?>">
@@ -174,7 +175,7 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
 										<button class="btn btn-success py-1" type="submit" <?php echo ( $disable ? "disabled" : ""  ) ?>>落點分析</button>
 									</form>
 								</td>
-                <?php $lastSeatNo = $field['seatNo']; } ?>
+                <?php $lastSeatNo = $field['seatNo']; ?>
 							</tr>
 						<?php $lineCounter++; } ?>
 						</tbody>
