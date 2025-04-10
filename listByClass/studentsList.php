@@ -68,8 +68,7 @@ else {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title><?php echo substr($targetFields['depIdTitle'],0,6); ?>預選學生列表</title>
   <link rel="icon" href="../images/<?php echo ( $_SERVER["SERVER_NAME"] == "yy33.us" ? "website-design.png" : "logo.icon.png"); ?>" type="image/x-icon">
-  <link rel="stylesheet" href="../../styles.css">
-  <script src="../../autoLogout.js"></script>
+  <link rel="stylesheet" href="../styles.css">
   <script>
     let depIdTitle = "<?php echo $targetFields['depIdTitle']; ?>";
     // 把從資料庫讀出來的資料以 json 格式傳給 JavaScript Object

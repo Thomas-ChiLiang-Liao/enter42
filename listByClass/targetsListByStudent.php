@@ -60,8 +60,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title><?php echo "$student[classTitle]【".substr($_GET['stuid'],-2)."】"; ?>預選列表</title>
   <link rel="icon" href="../images/<?php echo ( $_SERVER["SERVER_NAME"] == "yy33.us" ? "website-design.png" : "logo.icon.png"); ?>" type="image/x-icon">
-  <link rel="stylesheet" href="../../styles.css">
-  <script src="../../autoLogout.js"></script>
+  <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
   <?php menu2(); ?>

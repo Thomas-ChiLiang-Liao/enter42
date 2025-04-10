@@ -112,12 +112,12 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
         <table class="table table-bordered table-sm">
           <tbody>
             <tr>
-              <th class="table-warning text-center align-middle" rowspan="3" style="width: 6.5%">校系科組<br>學程名稱</th>
-              <td class="table-light align-middle" rowspan="3" colspan="2" style="width: 9%"><?php echo "$result[schTitle]<br>$result[depTitle]"; ?></td>
-              <th class="table-warning text-center align-middle" colspan="4">第一階段</th>
-              <th class="table-warning text-center align-middle" colspan="6">第二階段指定項目甄試</th>
-              <th class="table-warning text-center align-middle" colspan="2">可選填報名之系<br>科(組)、學程數</th>
-              <td class="bg-danger text-white text-center align-middle">
+              <th class="table-warning text-center align-middle" rowspan="3">校系科組<br>學程名稱</th>
+              <td class="table-light align-middle" rowspan="3" colspan="2"><?php echo "$result[schTitle]<br>$result[depTitle]"; ?></td>
+              <th class="table-warning text-center align-middle" colspan="4" width="20%">第一階段</th>
+              <th class="table-warning text-center align-middle" colspan="6" width="40%">第二階段指定項目甄試</th>
+              <th class="table-warning text-center align-middle" colspan="2" width="8%">可選填報名之系<br>科(組)、學程數</th>
+              <td class="bg-danger text-white text-center align-middle" width="5%">
                 <?php echo $result['maxTargets']; ?>
               </td>
             </tr>
@@ -128,16 +128,16 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
             </tr>
             <tr>
               <th class="table-warning text-center align-middle" rowspan="7">成<br>績<br>處<br>理<br>方<br>式</th>
-              <th class="table-warning text-center align-middle" style="width: 3.8%">科目</th>
-              <th class="table-warning text-center align-middle" style="width: 4.3%">篩選倍率</th>
+              <th class="table-warning text-center align-middle">科目</th>
+              <th class="table-warning text-center align-middle">篩選倍率</th>
               <th class="table-warning text-center align-middle">同級分超額<br>篩選科目</th>
               <th class="table-warning text-center align-middle" colspan="2">統一入學測驗<br>成績加權</th>
               <th class="table-warning text-center align-middle">指定項目</th>
-              <th class="table-warning text-center align-middle" style="width: 3%">最低<br>得分</th>
-              <th class="table-warning text-center align-middle" style="width: 3%">滿分</th>
+              <th class="table-warning text-center align-middle">最低<br>得分</th>
+              <th class="table-warning text-center align-middle">滿分</th>
               <th class="table-warning text-center align-middle">占總成績<br>比例</th>
               <th class="table-warning text-center align-middle">證照或<br>得獎加分</th>
-              <th class="table-warning text-center align-middle" style="width: 1.5%">順序</th>
+              <th class="table-warning text-center align-middle">順序</th>
               <th class="table-warning text-center align-middle">項目</th>
             </tr>
             <tr>

@@ -22,12 +22,6 @@
 		. ' TVETExamSort.Sort AS examSort,'
 		. ' TVETExamSort.admissionIds AS examSols,'
 		. ' student.examID AS examID,'
-    . ' student.preChinese AS preChinese,'
-    . ' student.preEnglish AS preEnglish,'
-    . ' student.preMath AS preMath,'
-    . ' student.preProf1 AS preProf1,'
-    . ' student.preProf2 AS preProf2,'
-    . ' student.preDeps AS preDeps,'
 		. ' student.simInterView AS simInterView,'
 		. ' student.phone1 AS phone1,'
 		. ' student.phone2 AS phone2'
@@ -41,7 +35,7 @@
     $statement->execute();
     $errorInfo = $statement->errorInfo();
     if ($errorInfo[0] != '00000') {
-      header("$msgPath=danger:讀取資料庫時發生了錯誤，代碼：$errorInfo[0]/$errorInfo[1]<br>訊息：$errorInfo[2]");
+      header("$msgPath=danger:讀取學生資料時發生了錯誤，代碼：$errorInfo[0]/$errorInfo[1]<br>訊息：$errorInfo[2]");
       exit();
     } else if ($statement->rowCount() != 1) header("Location: https://$_SERVER[SERVER_NAME]" . dirname($_SERVER['SCRIPT_NAME']) . '/index.php?loginFailed');
            else {
@@ -52,6 +46,18 @@
              $_SESSION['projectRoot'] = "https://$_SERVER[SERVER_NAME]" . dirname($_SERVER['SCRIPT_NAME']);
              $_SESSION['browserTimezoneOffset'] = $_POST['browserTimezoneOffset'] * 60;
              $_SESSION['serverTimezoneOffset']  = date("Z", time());
+             // 查詢有無落點分析資料
+             $sql = "SELECT departments AS preDeps FROM possibileDepartments WHERE id = RIGHT(:id,6);";
+             $statement = $pdo->prepare( $sql );
+             $statement->bindParam('id', $_SESSION['studentId'], PDO::PARAM_STR, 11);
+             $statement->execute();
+             $errorInfo = $statement->errorInfo();
+             if ($errorInfo[0] != '00000') {
+              header("$msgPath=danger:讀取落點分析資料時發生了錯誤，代碼：$errorInfo[0]/$errorInfo[1]<br>訊息：$errorInfo[2]");
+              exit();
+             }
+             $field = $statement->fetch(PDO::FETCH_ASSOC);
+             $_SESSION['preDeps'] = $field['preDeps'];
 
              if ($student['first'] == 1) header("Location: $_SESSION[projectRoot]/changePassword/");
              else header ("Location: $_SESSION[projectRoot]/main/");

@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <?php
 /*
-$_SESSION['classTitle']
-$_SESSION['studentId']  
-$_SESSION['first']
-$_SESSION['studentName']
-$_SESSION['examSortID'] => 51 
-$_SESSION['examSort'] => 電機與電子群 
-$_SESSION['examSols'] => 03,04 
-$_SESSION['examID']  
-$_SESSION['preChinese']
-$_SESSION['preEnglish']
-$_SESSION['preMath']
-$_SESSION['preProf1']
-$_SESSION['preProf2']
-$_SESSION['preDeps']
-$_SESSION['simInterView'] 
-$_SESSION['phone1'] 
-$_SESSION['phone2']
-$_SESSION['projectRoot'] => https://photo.taivs.tp.edu.tw/enter42/preSelect 
+$_SESSION['classTitle'] =>    班級名稱
+$_SESSION['studentId'] =>     報名序號(後6碼)
+$_SESSION['first'] =>         第一次登入為 true
+$_SESSION['studentName'] =>   學生姓名
+$_SESSION['examSortID'] =>    報考類別碼
+$_SESSION['examSort'] =>      報考類別
+$_SESSION['examSols'] =>      可選的類別03,04
+$_SESSION['examID'] =>        准考證號
+$_SESSION['preChinese'] =>    落點分析國文成績 
+$_SESSION['preEnglish'] =>    落點分析英文成績  
+$_SESSION['preMath'] =>       落點分析數學成績 
+$_SESSION['preProf1'] =>      落點分析專一成績
+$_SESSION['preProf2'] =>      落點分析專二成績
+$_SESSION['preDeps'] =>       落點分析 
+$_SESSION['simInterView'] =>  是否參加模擬面試
+$_SESSION['phone1'] =>  
+$_SESSION['phone2'] => 
+$_SESSION['projectRoot'] => https://yy33.us/enter42/preSelect 
 $_SESSION['browserTimezoneOffset'] => -28800 
 $_SESSION['serverTimezoneOffset'] => 28800
 */

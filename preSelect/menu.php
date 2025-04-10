@@ -46,7 +46,7 @@ function menu($func) {
           </li>
           <?php if ($_SESSION['preDeps'] != null) { ?>
           <li class="nav-item">
-            <a class="nav-link<?php echo ( $func == 'refData' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/refData/">
+            <a class="nav-link<?php echo ( $func == 'possibileDepartments' ? ' active' : '' ); ?>" href="<?php echo $_SESSION['projectRoot']; ?>/possibileDepartments/">
               落點分析
             </a>
           </li>

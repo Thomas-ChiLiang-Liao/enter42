@@ -111,7 +111,7 @@ if ( !isset( $_SERVER['HTTPS'] ) OR ( $_SERVER['HTTPS'] != 'on' ) ) header( "Loc
             <?php $lineCounter = 0; while ( $field = $students->fetch(PDO::FETCH_ASSOC) ) {
               if ( $lastSeatNo == $field['seatNo'] ) continue;
               if ( $field['flag'] == null ) $disable = true; else $disable = false;
-              if ( $lineCounter % 15 == 0 && $lineCounter <> 0 ) { ?>
+              if ( $lineCounter % 20 == 0 && $lineCounter <> 0 ) { ?>
             	<tr class="bg-secondary text-white">
 								<th class="text-center align-middle bg-secondary text-white">重設密碼</th>
 								<th class="text-center align-middle bg-secondary text-white">座號</th>
