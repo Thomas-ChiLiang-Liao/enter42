@@ -10,8 +10,8 @@ $databaseName = 'enter42';
 ** 後臺程式操作資料庫時所使用的帳號、密碼                                   
 ** 全域權限：無。                                                             
 ** 操作資料庫enter42權限：全域 -> select, insert                                     
-** 		操作資料表control, operator, student, class權限：insert, update, delete 
-**		操作資料表TVERETarget, TVEREOperateRecord, TVEREStatic權限：delete      
+**    操作資料表student 權限：update, delete
+**		操作資料表class, control, operator, TVERETarget, TVEREOperateRecord, TVEREStatic, possibileDepartments 權限：delete      
 ********************************************************************************/
 $opId = 'enter42Operator';
 $opPw = 'pB7/9hwd3g';
