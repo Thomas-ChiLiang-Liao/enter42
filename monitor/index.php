@@ -33,6 +33,7 @@
                   <option value="">請選擇</option>
                   <option value="photo.taivs.tp.edu.tw">大安高工</option>
                   <option value="cwds.taivs.tp.edu.tw">木柵高工</option>
+                  <option value="s42.tcivs.tc.edu.tw">臺中工高</option>
                   <option value="yy33.us">開發伺服器</option>
                 </select>
               </div>

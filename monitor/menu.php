@@ -2,12 +2,12 @@
 function menu($func) {
   session_start();
 ?>
-<!-- 🔷 橫幅 -->
+<!-- ߔ砦髥酠-->
 <div class="bg-primary text-white text-center py-3">
   <h1 class="mb-0">大安高工</h1>
 </div>
 
-<!-- 🔶 Navbar -->
+<!-- ߔ栎avbar -->
 <?php if ( isset($_SESSION['server']) ) { ?> 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid">
@@ -20,7 +20,7 @@ function menu($func) {
       <!-- 左側功能 -->
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link<?= ( $func == 'dailyList' ? ' active' : '' ) ?>" href="<?= $_SESSION['serverRoot'].'/dailyList.php?func=1' ?>" >每人操作人次</a>
+          <a class="nav-link<?= ( $func == 'dailyList' ? ' active' : '' ) ?>" href="<?= $_SESSION['serverRoot'].'/dailyList.php?func=1' ?>" >每天(時)操作人次</a>
         </li>
         <li class="nav-item">
           <a class="nav-link<?= ( $func == 'operateTimesListByTimes' ? ' active' : '' ) ?>" href="<?= $_SESSION['serverRoot'].'/operateTimesListByTimes.php?func=1' ?>">每人操作次數(由大到小排列)</a>
@@ -32,7 +32,7 @@ function menu($func) {
 
       <!-- 右側伺服器資訊 -->
       <span class="navbar-text text-white">
-        🌐 登入伺服器：<?php echo $_SESSION['server']; ?>&nbsp;&nbsp;
+      🌐&nbsp;登入伺服器：<?php echo $_SESSION['server']; ?>&nbsp;&nbsp;
         <a href="<?php echo $_SESSION['serverRoot']; ?>/logout.php" class="nav-link d-inline">登出</a>
       </span>
     </div>
